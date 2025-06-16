@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB  from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import ProductRoutes from './routes/ProductRoutes.js';
+import CartRoutes from './routes/cartRoutes.js';
 
 
 //Load environment variables
@@ -19,6 +20,7 @@ app.use(express.json());
 //Routes
 app.use('/api',authRoutes);
 app.use('/api/products', ProductRoutes);
+app.use('/api/cart', CartRoutes);
 
 
 app.get('/',(req,res)=>{

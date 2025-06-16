@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from "cors";
 import connectDB  from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
-
+import ProductRoutes from './routes/ProductRoutes.js';
 
 
 //Load environment variables
@@ -18,6 +18,7 @@ app.use(express.json());
 
 //Routes
 app.use('/api',authRoutes);
+app.use('/api/products', ProductRoutes);
 
 
 app.get('/',(req,res)=>{

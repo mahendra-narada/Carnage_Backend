@@ -18,19 +18,21 @@ export const getCart = async (req,res)=>{
 // @route   POST /api/cart
 export const addtoCart = async (req,res)=>{
     const {productId,quantity} = req.body;
+    console.log(`Adding product ${productId} with quantity ${quantity} to cart for user ${req.user._id}`);
+    
 
     let cart = await Cart.findOne({user:req.user._id});
     if(!cart){
         cart = await Cart.create({
             user:req.user._id,
-            cartItems:[{product:productId,quantity}]
+            cartItems:[{productId,quantity}]
         });
     }
-    const existingItem = cart.cartItems.find(item => item.product.toString() === productId);
+    const existingItem = cart.cartItems.find(item => item.productId.toString() === productId);
     if(existingItem){
         existingItem.quantity += quantity;
     }else{
-        cart.cartItems.push({product:productId,quantity});
+        cart.cartItems.push({productId,quantity});
     }
     
     cart.updatedAt = Date.now();

@@ -5,6 +5,7 @@ import connectDB  from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import ProductRoutes from './routes/ProductRoutes.js';
 import CartRoutes from './routes/cartRoutes.js';
+import OrderRoutes from './routes/orderRoutes.js';
 
 
 //Load environment variables
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/api',authRoutes);
 app.use('/api/products', ProductRoutes);
 app.use('/api/cart', CartRoutes);
+app.use('/api/orders', OrderRoutes);
 
 
 app.get('/',(req,res)=>{

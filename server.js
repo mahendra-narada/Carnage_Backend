@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import ProductRoutes from './routes/ProductRoutes.js';
 import CartRoutes from './routes/cartRoutes.js';
 import OrderRoutes from './routes/orderRoutes.js';
+import PaymentRoutes from './routes/paymentRoutes.js';
 
 
 //Load environment variables
@@ -23,6 +24,7 @@ app.use('/api',authRoutes);
 app.use('/api/products', ProductRoutes);
 app.use('/api/cart', CartRoutes);
 app.use('/api/orders', OrderRoutes);
+app.use('/api/payment', PaymentRoutes);
 
 
 app.get('/',(req,res)=>{

@@ -30,6 +30,14 @@ const orderSchema = new mongoose.Schema({
         enum: ['Pending', 'Shipped', 'Delivered', 'Cancelled'],
         default: 'Pending'
     },
+    isPaid:{
+        type: Boolean,
+        default: false
+    },
+    paidAt:{
+        type: Date
+    },
+
     createdAt: {
         type: Date,
         default: Date.now

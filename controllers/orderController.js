@@ -134,3 +134,25 @@ export const getAllOrders = async (req, res) => {
     }
 };
 
+// @desc Mark an order as Paid
+// @route PUT /api/orders/:id/pay
+export const markOrderAsPaid = async (req,res)=>{
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+        return res.status(404).json({ message: 'Order not found' });
+    }
+    if (order.user.toString() !== req.user._id.toString()) {
+        return res.status(403).json({ message: 'Access denied' });
+    }
+
+    order.isPaid = true;
+    order.paidAt = new Date();
+    await order.save();
+    res.status(200).json({
+        success: true,
+        message: 'Order marked as paid successfully',
+        order
+    });
+}
+
+

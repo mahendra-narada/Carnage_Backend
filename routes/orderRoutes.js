@@ -1,5 +1,5 @@
 import express from 'express';
-import { createOrder,getUserOrders,getOrderById,updateOrderStatus,deleteOrder,getAllOrders} from '../controllers/orderController.js';
+import { createOrder,getUserOrders,getOrderById,updateOrderStatus,deleteOrder,getAllOrders,markOrderAsPaid} from '../controllers/orderController.js';
 
 const router = express.Router();
 
@@ -21,5 +21,9 @@ router.route('/:id/status')
 // Route to get all orders (Admin)
 router.route('/admin')
     .get(protect, adminOnly, getAllOrders); // Get all orders for admin
+
+// Route to mark an order as paid
+router.route('/:id/pay')
+    .put(protect, markOrderAsPaid); // Mark order as paid
 
 export default router;
